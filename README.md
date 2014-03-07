@@ -1,8 +1,7 @@
 # Projekt EA - Urlaubsverwaltung
-***
 **Beteiligte Personen:**
 Jonas Arndt, Emre Konar, Daniel Treptow
-***
+
 
 ##Projektbeschreibung
 
@@ -20,33 +19,54 @@ Zur auswertung der Urlaube aller Mitarbeiter gibt es einen Admin Zugang.
 * Warnungen bei leeren Abteilungen
 
 ##ERM
+![Grafik ERM](https://lh5.googleusercontent.com/Uj-P3OOhkwNSJtWib6p8Sye4znvjLk_q8zdT42VCyWxBvZdXF0kOzd7dRxnkBlcZYg=w1563-h766 "Grafik ERM")
+
 
 ##Datenbank Struktur
 
-Dienst
+###Dienst
 
-| k | v |  
-| - | - |  
-| id  |  |
+| key | type | xtra |
+| --- | --- | --- | 
+| id  |  | PK |
 | Bereitschaft  |  |
 | Ort  |  |
 | Name  |  |
 | Erreichbar  |  |
 
 
-Ereignis
+###event
 
-| k | v |  
-| - | - |  
-| id  |  |
-| von  |  |
-| bis  |  |
-| Name  |  |
-| Bemerkung  |  |
+| key | type| xtra |
+| --- | --- | --- | 
+| id  |  | PK |
+| begin  | timestamp |
+| end  | timestamp |
+| name  | varchar(40) |
+| comment  | text |
 
-Abteilung
 
-Benutzer
+###departments
+
+| key | type | xtra | 
+| --- | --- | --- | 
+| id  | int(11) | PK |
+| name  | varchar(40) |
+| min_count  | int(11) |
+
+###user
+
+| key | type | xtra |
+| --- | --- | --- | 
+| id  | int(11) | PK |
+| department_id  | int(11) | FK |
+| lastname | varchar(55) |
+| firstname  | varchar(55) |
+| username | varchar(90) |
+| password  | varchar(64) |
+| salt | varchar(16) |
+| telephone  | varchar(20) |
+
 
 ##UserInterface
 
