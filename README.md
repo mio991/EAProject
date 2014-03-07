@@ -23,6 +23,8 @@ Zur auswertung der Urlaube aller Mitarbeiter gibt es einen Admin Zugang.
 
 
 ##Datenbank Struktur
+![Grafik ERM](https://lh5.googleusercontent.com/Uj-P3OOhkwNSJtWib6p8Sye4znvjLk_q8zdT42VCyWxBvZdXF0kOzd7dRxnkBlcZYg=w1563-h766 "Grafik ERM")
+
 
 ###services
 
@@ -82,7 +84,16 @@ Zur auswertung der Urlaube aller Mitarbeiter gibt es einen Admin Zugang.
 | salt | varchar(16) |
 | telephone  | varchar(20) |
 
+###user_service
+
+| key | type | xtra |
+| --- | --- | --- | 
+| id  | int(11) | PK |
+| user_id  | int(11) | FK |
+| service_id | int(11) | FK |
+| comment  | text |
+| begin | timestamp |
+| end  | timestamp |
+
 
 ##UserInterface
-
-dfdfdfdfdfddfdfdf dsdsdg fgd
