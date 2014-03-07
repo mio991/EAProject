@@ -24,26 +24,41 @@ Zur auswertung der Urlaube aller Mitarbeiter gibt es einen Admin Zugang.
 
 ##Datenbank Struktur
 
-###Dienst
+###services
 
 | key | type | xtra |
 | --- | --- | --- | 
-| id  |  | PK |
-| Bereitschaft  |  |
-| Ort  |  |
-| Name  |  |
-| Erreichbar  |  |
+| id  | int(11) | PK |
+| name  | varchar(40) |
+| location  | varchar(40) |
+| standby  | bit(1) |
+| available  | bit(1) |
 
+###service_event
+
+| key | type | xtra |
+| --- | --- | --- | 
+| id  | int(11) | PK |
+| servie_id  | int(11) | FK |
+| event_id  | int(11) | FK |
 
 ###event
 
 | key | type| xtra |
 | --- | --- | --- | 
-| id  |  | PK |
+| id  | int(11) | PK |
 | begin  | timestamp |
 | end  | timestamp |
 | name  | varchar(40) |
 | comment  | text |
+
+###event_departments
+
+| key | type| xtra |
+| --- | --- | --- | 
+| id  | int(11) | PK |
+| department_id  | int(11) | FK (departments) |
+| event_id  | int(11) | FK (event) |
 
 
 ###departments
