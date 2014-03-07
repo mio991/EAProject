@@ -23,7 +23,7 @@ Zur auswertung der Urlaube aller Mitarbeiter gibt es einen Admin Zugang.
 
 
 ##Datenbank Struktur
-![Grafik ERM](https://lh5.googleusercontent.com/Uj-P3OOhkwNSJtWib6p8Sye4znvjLk_q8zdT42VCyWxBvZdXF0kOzd7dRxnkBlcZYg=w1563-h766 "Grafik ERM")
+![Grafik ERM](https://lh6.googleusercontent.com/5WxbVXCQJmDG3MBrfk5AxB4NzaMB5iGfKx8O1jhCY1F-cTu9CH2d-AAOODOZXBMUOA=w1563-h766 "Grafik ERM")
 
 
 ###services
