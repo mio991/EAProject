@@ -12,6 +12,9 @@ $.ajaxSetup({
         },
         403: function() { // 403 -- Access denied
             window.location.replace('#denied');
+        },
+        404: function() { // 403 -- Access denied
+            window.location.replace('#denied');
         }
     }
 });

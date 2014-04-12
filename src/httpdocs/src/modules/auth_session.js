@@ -35,7 +35,7 @@ AuthorizedSession = Backbone.Model.extend({
 
     login: function(){
 
-        window.location.replace('#books');
+        window.location.replace('#events');
         Backbone.ViewManager.Core.swap('current_user_panel', new CurrentUserPanel.View());
         this.trigger('loggedin');
     },

@@ -128,7 +128,7 @@ Events.View = Backbone.ViewManager.BaseView.extend({
     collection: Events.list,
     view_new_entry: null,
     tagName: 'section',
-    className: 'event',
+    className: 'events',
     year: null,
     events: {
         'click .print': "showPdf",
@@ -184,13 +184,13 @@ Events.View = Backbone.ViewManager.BaseView.extend({
             });
 
             //append heading line
-            var list_heading = new Events.ViewListItem({model: new EventsList.Model({
-                title: 'Titel',
-                comment: 'Kommentar',
-                begin: 'Urlaub von',
-                end: 'Urlaub bis'})});
+            // var list_heading = new Events.ViewListItem({model: new EventsList.Model({
+            //     title: 'Titel',
+            //     comment: 'Kommentar',
+            //     begin: 'Urlaub von',
+            //     end: 'Urlaub bis'})});
 
-            that.$el.find('.events_head').append(list_heading.$el);
+            // that.$el.find('.events_head').append(list_heading.$el);
 
             that.search();
         });
@@ -220,16 +220,16 @@ Events.View = Backbone.ViewManager.BaseView.extend({
         this.collection.reset();
     },
     showPdf: function() {
-        console.debug('generating pdf and show, currently disabled');
+        //console.debug('generating pdf and show, currently disabled');
 
         var doc = new jsPDF();
             doc.setProperties({
                 // '+this.model.get('title')+'
-                title: 'Kassenbuch:  '+$('select[name="filter_year"]').val()+'/'+$('select[name="filter_month"]').val(),
-                subject: 'Kassenbuch '+$('select[name="filter_year"]').val()+'/'+$('select[name="filter_month"]').val()+', Firma und so hier',
-                author: 'WebnexX',
+                title: 'Urlaube  ',
+                subject: 'Uralaubsübersicht',
+                author: 'Emre Konar, Jonas Arndt, Daniel Treptow',
                 keywords: '',
-                creator: 'Daniel Treptow'
+                creator: 'Urlaubsplaner von Emre Konar, Jonas Arndt und Daniel Treptow'
             });
 
             // heading
@@ -237,35 +237,27 @@ Events.View = Backbone.ViewManager.BaseView.extend({
             doc.setFontType("bold");
             doc.setFontSize(22);
 
-            doc.text(10, 20, 'Kassenbuch');
+            doc.text(10, 20, 'Urlaub');
 
             // transactions list heading
             doc.setFont("courier");
             doc.setFontSize(8);
             doc.setFontType("bold");
 
-            doc.text(10, 30, 'Text');
-            doc.text(40, 30, 'Gegenkonto');
-            doc.text(70, 30, 'Belegnummer');
-            doc.text(95, 30, 'Datum');
-            doc.text(120, 30, 'MwSt.');
-            doc.text(130, 30, 'Bestand');
-            doc.text(150, 30, 'Einnahmen');
-            doc.text(180, 30, 'Ausgaben');
+            doc.text(10, 30, 'title');
+            doc.text(40, 30, 'comment');
+            doc.text(115, 30, 'begin');
+            doc.text(150, 30, 'end');
 
             // transactions list
             doc.setFontType("normal");
             var pos_y = 35;
-            this.collection.each(function(transaction) {
-                doc.text(10, pos_y, transaction.get('description').toString());
-                doc.text(40, pos_y, transaction.get('contra_account').toString());
-                doc.text(70, pos_y, transaction.get('proof_nr').toString());
-                doc.text(95, pos_y, transaction.get('date').toString());
-                doc.text(120, pos_y, transaction.get('vat_rate').toString());
-                doc.text(130, pos_y, transaction.get('stock').toString());
-                doc.text(150, pos_y, transaction.get('receipt').toString());
-                doc.text(180, pos_y, transaction.get('cost').toString());
-                pos_y += 5;
+            this.collection.each(function(events) {
+                doc.text(10, pos_y, events.get('title').toString());
+                doc.text(40, pos_y, events.get('comment').toString());
+                doc.text(115, pos_y, events.get('begin').toString());
+                doc.text(150, pos_y, events.get('end').toString());
+                pos_y += 2;
             });
 
             // finally output or save or something
