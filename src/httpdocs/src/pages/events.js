@@ -3,6 +3,7 @@ Events.list = new EventsList.Collection();
 Events.Model = Backbone.Model.extend({
     urlBase: 'model/bb_events',
     defaults: {
+        position: null,
         user_id: null,
         title: null,
         comment: 0,
@@ -69,6 +70,8 @@ Events.ViewAddEntry = Backbone.View.extend({
                     that.trigger('created',data);
                 }
             });
+
+            this.trigger('save');
         }
     },
 
@@ -110,6 +113,15 @@ Events.ViewListItem = Backbone.View.extend({
             }
 
             this.kill();
+        },
+        'click .edit': function(event) {
+            event.preventDefault();
+
+            // if (!confirm("Wollen Sie Urlaub Nr.: '"+this.model.get('position')+"' wirklich bearbeiten?")) {
+            //     return false;
+            // }
+
+            this.edit();
         }
     },
 
@@ -120,6 +132,16 @@ Events.ViewListItem = Backbone.View.extend({
         });
 
         return this.el;
+    },
+
+    edit: function(){
+        // var view_new_entry = new Events.ViewAddEntry({'event_id': this.model.get('id')}).render();
+        var view_new_entry = new Events.ViewAddEntry({model: this.model});
+        var that = this;
+
+        view_new_entry.on('save',function(){that.render();});
+
+        this.$el.html(view_new_entry.render());
     }
 });
 

@@ -9,9 +9,10 @@ var EventsList = {};
 
 EventsList.Model = Backbone.Model.extend({
     defaults: {
-        user_id: 0, // einnahmen
-        title: 0, // ausgaben
-        comment: 0, // bestand
+        position: null,
+        user_id: null, // einnahmen
+        title: null, // ausgaben
+        comment: null, // bestand
         begin: null, // gegenkonto
         end: null
     },

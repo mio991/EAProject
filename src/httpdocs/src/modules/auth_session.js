@@ -25,6 +25,7 @@ AuthorizedSession = Backbone.Model.extend({
             this.set('sessionId', localStorageSession);
             this.save({'auth':true},{
                 success: function(data){
+                    $('#top_navigation').fadeIn();
                     that.trigger('loggedin');
                 }
             });
@@ -36,6 +37,7 @@ AuthorizedSession = Backbone.Model.extend({
     login: function(){
 
         window.location.replace('#events');
+        $('#top_navigation').fadeIn();
         Backbone.ViewManager.Core.swap('current_user_panel', new CurrentUserPanel.View());
         this.trigger('loggedin');
     },
@@ -60,5 +62,6 @@ AuthorizedSession = Backbone.Model.extend({
         //window.location.reload();
 
         this.trigger('loggedout');
+        $('#top_navigation').fadeOut();
     }
 });

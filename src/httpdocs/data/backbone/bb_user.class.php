@@ -13,7 +13,7 @@ class bb_user extends bb_base{
 
         $db = MySql :: getInstance();
         $sql_select_query = 'SELECT * FROM `user` WHERE `id`=%1$u ORDER by id ASC;';
-        $res = $db->queryf($sql_select_query, $id);
+        $res = $db->queryf($sql_select_query, $_SESSION['auth']['user_id']);
 
         $row = $db->fetch($res);
         $db->free($res);
@@ -44,7 +44,7 @@ class bb_user extends bb_base{
     }
 
     function update($params){
-        if (false === authorize('superuser')) {
+        if (false === authorize('user')) {
             return false;
         }
 
@@ -58,9 +58,9 @@ class bb_user extends bb_base{
         if ($params->comment)
                 $sql_update_str[] = sprintf("`comment` = '%s'", $db->escape($params->comment));
         if ($params->begin)
-                $sql_update_str[] = sprintf("`comment` = '%s'", $db->escape($params->begin));
+                $sql_update_str[] = sprintf("`begin` = '%s'", $db->escape($params->begin));
         if ($params->end)
-                $sql_update_str[] = sprintf("`comment` = '%s'", $db->escape($params->end));
+                $sql_update_str[] = sprintf("`end` = '%s'", $db->escape($params->end));
 
         // nothing to change
         if (empty($sql_update_str)) {
@@ -68,7 +68,7 @@ class bb_user extends bb_base{
         }
 
         $sql_update_str = 'UPDATE `events` SET ' . implode(', ', $sql_update_str) . ' WHERE `id` = %1$u;';
-        $db->queryf($sql_update_str, $params->id);
+        $db->queryf($sql_update_str, $_SESSION['auth']['user_id']);
 
         // evaluate results
         $affected_rows = $db->getAffected();

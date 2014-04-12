@@ -36,7 +36,8 @@ window.App = {
 // application router
 App.Routers.Main = Backbone.Router.extend({
     routes: {
-        "": "home",
+        "": "login",
+        "home": "home",
         "settings": "settings",
         "events": "events",
         "event/:id": "event",
@@ -53,6 +54,7 @@ App.Routers.Main = Backbone.Router.extend({
         Backbone.ViewManager.Core.addRegion('current_user_panel', '#current_user_panel');
 
         Backbone.ViewManager.Core.swap('current_user_panel', new CurrentUserPanel.View().render());
+        $('#top_navigation').hide();
         //Backbone.ViewManager.Core.addRegion('sidebar', '#sidebar');
     },
     home: function() {
