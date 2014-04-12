@@ -184,13 +184,13 @@ Events.View = Backbone.ViewManager.BaseView.extend({
             });
 
             //append heading line
-            // var list_heading = new Events.ViewListItem({model: new EventsList.Model({
-            //     title: 'Titel',
-            //     comment: 'Kommentar',
-            //     begin: 'Urlaub von',
-            //     end: 'Urlaub bis'})});
+            var list_heading = new Events.ViewListItem({model: new EventsList.Model({
+                title: 'Titel',
+                comment: 'Kommentar',
+                begin: 'Urlaub von',
+                end: 'Urlaub bis'})});
 
-            // that.$el.find('.events_head').append(list_heading.$el);
+            that.$el.find('.events_head').append(list_heading.$el);
 
             that.search();
         });
@@ -257,7 +257,7 @@ Events.View = Backbone.ViewManager.BaseView.extend({
                 doc.text(40, pos_y, events.get('comment').toString());
                 doc.text(115, pos_y, events.get('begin').toString());
                 doc.text(150, pos_y, events.get('end').toString());
-                pos_y += 2;
+                pos_y += 3;
             });
 
             // finally output or save or something

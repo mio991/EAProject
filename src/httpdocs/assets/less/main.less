@@ -101,6 +101,7 @@ h3{
     text-decoration: none;
     min-width: 100px;
     text-align: center;
+    cursor: pointer;
 
     font-family: 'PT Sans Narrow';
     font-weight: 700;
@@ -361,24 +362,6 @@ body {
     }
 }
 
-.table_layout {
-    display: inline-block;
-    width: 100px;
-
-    &.position { width: 30px; padding-left: 10px;}
-    &.description { width: 200px; }
-    &.contra_account { width: 150px; }
-    &.proof_nr { width: 150px; }
-    &.date { width: 110px; }
-    &.stock, &.cost, &.receipt{ width: 85px; text-align: right;}
-    &.vat_rate { width: 50px; }
-    &.personal_id { display: none; }
-    &.actions {
-        text-align: left;
-        padding-left: 10px;
-    }
-}
-
 section.auth {
     form {
         display: block;
@@ -417,141 +400,74 @@ section.auth {
     }
 }
 
-section.books {
-    #books_list {
-        .content_block;
-
-        li {
-            cursor: default;
-            .title {
-                width: 250px;
-                /*display: table-cell;
-                vertical-align: middle;*/
-            }
-
-            div {
-                display: inline-block;
-            }
-
-            .smallButton {
-                /*display: none;*/
-            }
-
-            /*&:hover {
-                .smallButton {
-                    display: inline-block;
-                }
-            }*/
-        }
-
-    }
-
-    #add_entry {
-        .content_block_grey;
-        img {
-            margin-right: 40px;
-        }
-        input {
-            width: 200px;
-        }
-    }
-}
-
 section.events {
     padding: 20px;
     // list properties only, no-styling
 
-    #list_filter {
-        .content_block_grey;
-        margin-left: 10px;
-        margin-right: 10px;
+    .button.print {
+        width: 150px;
+    }
 
-        select[name="filter_year"] {
+    .events_add {
+        label {
+            display: inline-block;
             width: 100px;
         }
-
-        select[name="filter_month"] {
-            width: 200px;
-
-            option.hasItems {
-                font-weight: 700;
-            }
-        }
-
-        .print {
-            float: right;
+        input {
+            margin-bottom: 3px;
         }
     }
 
-    #events {
-        .content_block;
+    input[type="date"]::-webkit-outer-spin-button,
+    input[type="date"]::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
 
-        #list_head {
-            font-size: 0.6em;
-
-            .list_item{
-                li {
-                    .table_layout;
-                    display: table-cell;
-                    vertical-align: middle;
-                    &.actions {
-                        display: none;
-                    }
-                }
-            }
-        }
-
-        #list {
-            border-top: 1px dotted #333;
-            border-bottom: 1px dotted #333;
-
-            .list_item{
-                cursor: default;
-                border-radius: 3px;
-                height: 28px;
-                li {
-                    .table_layout;
-                    display: table-cell;
-                    vertical-align: middle;
-
-                    /*&.actions {
-                        display: none;
-                    }*/
-                }
-                &:hover {
-                    background-color: #555;
-                    color: #eee;
-
-                    /*li.actions {
-                        display: table-cell;
-                    }*/
-                }
-            }
+    .events_head {
+        font-weight: bold;
+        .actions {
+            display: none;
         }
     }
 
-    #add_entry {
-        .content_block_grey;
-        margin-left: 10px;
-        margin-right: 10px;
-        padding-left: 10px;
-        padding-right: 10px;
+    .event_list {
+        padding: 0px;
+        margin: 0px;
 
-        label{
-            span { display: none; }
+        li {
+            display: inline-block;
+            width: 20%;
+            vertical-align: top;
 
-            .table_layout;
-        }
+            padding: 0px;
+            margin: 0px;
 
-        input[name="receipt"], input[name="cost"], input[name="stock"] {
-            text-align: right;
-        }
+            &.position {
+                width: 10%;
+            }
 
-        input[type="date"]::-webkit-outer-spin-button,
-        input[type="date"]::-webkit-inner-spin-button {
-            /* display: none; <- Crashes Chrome on hover */
-            -webkit-appearance: none;
-            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+            &.actions {
+                width: 5%;
+                text-align: right;
+            }
+
+            &.title {
+                width: 30%;
+            }
+
+            &.comment {
+                width: 30%;
+            }
+
+            &.begin {
+                width: 10%;
+            }
+
+            &.end {
+                width: 10%;
+            }
         }
     }
 }
