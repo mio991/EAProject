@@ -1,0 +1,11 @@
+RewriteEngine On
+
+RewriteBase /EAProject/src/httpdocs/api/
+#RewriteBase /api/
+RewriteRule ^file/(.+)$                             $1.php [L]
+RewriteRule ^model/(\w+)$                           backbone.php?class=$1 [QSA,L]
+RewriteRule ^model/(\w+)/([0-9a-zA-Z]*)$            backbone.php?class=$1&id=$2 [QSA,L]
+RewriteRule ^model/(\w+)?id=([0-9a-zA-Z]*)$         backbone.php?class=$1&id=$2 [QSA,L]
+RewriteRule ^collection/(\w+)$                      backbone.php?class=$1 [QSA,L]
+RewriteRule ^collection/(\w+)/([0-9a-zA-Z]*)$       backbone.php?class=$1&id=$2 [QSA,L]
+RewriteRule ^collection/(\w+)?id=([0-9a-zA-Z]*)$    backbone.php?class=$1&id=$2 [QSA,L]

@@ -1,0 +1,226 @@
+<div style="background-color: rgb(255, 255, 255); font-family: 'Lucida Grande', 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Lucida Sans Unicode', Helvetica, Arial, sans-serif; font-size: 0.9em; overflow-x: hidden; overflow-y: auto; margin: 0px !important; padding: 5px 20px 26px !important;padding: 20px;padding: 20px; color: rgb(34, 34, 34); font-size: 15px; font-family: 'Roboto Condensed', Tauri, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', AppleSDGothicNeo-Medium, 'Segoe UI', 'Malgun Gothic', Verdana, Tahoma, sans-serif; background-color: rgb(255, 255, 255); -webkit-font-smoothing: antialiased; background-position: initial initial; background-repeat: initial initial;">
+  <h1 id="projekt-ea---urlaubsverwaltung" style="clear: both;font-size: 2.2em; font-weight: bold; margin: 1.5em 0px 1em;margin-top: 0px;"><a name="projekt-ea---urlaubsverwaltung" href="#projekt-ea---urlaubsverwaltung" style="text-decoration: none; vertical-align: baseline;color: rgb(50, 105, 160);"></a>Projekt EA - Urlaubsverwaltung</h1><p style="margin-top: 0px;margin: 1em 0px; word-wrap: break-word;"><strong>Beteiligte Personen:</strong>
+Jonas Arndt, Emre Konar, Daniel Treptow</p><h2 id="projektbeschreibung" style="clear: both;font-size: 1.8em; font-weight: bold; margin: 1.275em 0px 0.85em;border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(230, 230, 230); line-height: 1.7em;"><a name="projektbeschreibung" href="#projektbeschreibung" style="text-decoration: none; vertical-align: baseline;color: rgb(50, 105, 160);"></a>Projektbeschreibung</h2><p style="margin-top: 0px;margin: 1em 0px; word-wrap: break-word;">Es soll eine Datenbank erstellt werden in der Dienste/ Urlaube/ und die zugeordneten Personen gespeichert werden.<br style="clear: both;">In der benuutzeroberfläche kann sich der Benutzer nach erfolgreicher Verifizierung seine Dienste u Urlaube Planen ( Einsehen, Anlegen, ändern, löschen).<br style="clear: both;">Zur auswertung der Urlaube aller Mitarbeiter gibt es einen Admin Zugang.  </p><h2 id="features" style="clear: both;font-size: 1.8em; font-weight: bold; margin: 1.275em 0px 0.85em;border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(230, 230, 230); line-height: 1.7em;"><a name="features" href="#features" style="text-decoration: none; vertical-align: baseline;color: rgb(50, 105, 160);"></a>Features</h2><ul>
+<li style="display: list-item; line-height: 1.4em;">Filterung nach Abteilungen</li>
+<li style="display: list-item; line-height: 1.4em;">Filterung nach Zeiträumen</li>
+<li style="display: list-item; line-height: 1.4em;">Dienste müssen vom Chef genehmigt werden.</li>
+<li style="display: list-item; line-height: 1.4em;">Es können vom Admin Ereignisse angelegt werden (zB.: Urlaubsperre die nur bestimmte Abteilungen betreffen)</li>
+<li style="display: list-item; line-height: 1.4em;">Warnungen bei sich überschneidenden Urlauben</li>
+<li style="display: list-item; line-height: 1.4em;">Warnungen bei leeren Abteilungen</li>
+</ul><h2 id="erm" style="clear: both;font-size: 1.8em; font-weight: bold; margin: 1.275em 0px 0.85em;border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(230, 230, 230); line-height: 1.7em;"><a name="erm" href="#erm" style="text-decoration: none; vertical-align: baseline;color: rgb(50, 105, 160);"></a>ERM</h2><p style="margin-top: 0px;margin: 1em 0px; word-wrap: break-word;"><img src="./doc/pic/ERM-EA.png" alt="Grafik ERM" title="Grafik ERM" style="max-width: 100%;"></p><h2 id="datenbank-struktur" style="clear: both;font-size: 1.8em; font-weight: bold; margin: 1.275em 0px 0.85em;border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(230, 230, 230); line-height: 1.7em;"><a name="datenbank-struktur" href="#datenbank-struktur" style="text-decoration: none; vertical-align: baseline;color: rgb(50, 105, 160);"></a>Datenbank Struktur</h2><p style="margin-top: 0px;margin: 1em 0px; word-wrap: break-word;"><img src="./doc/pic/tabbleoverview.png" alt="Grafik ERM" title="Grafik ERM" style="max-width: 100%;"></p><h3 id="services" style="clear: both;font-size: 1.6em; font-weight: bold; margin: 1.125em 0px 0.75em;"><a name="services" href="#services" style="text-decoration: none; vertical-align: baseline;color: rgb(50, 105, 160);"></a>services</h3><table style="padding: 0px; border-collapse: collapse; border-spacing: 0px;background-color: rgb(250, 250, 250);">
+<thead>
+<tr>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">key</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">type</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">xtra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">PK</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">name</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">varchar(40)</td>
+</tr>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">location</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">varchar(40)</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">standby</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">bit(1)</td>
+</tr>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">available</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">bit(1)</td>
+</tr>
+</tbody>
+</table><h3 id="service_event" style="clear: both;font-size: 1.6em; font-weight: bold; margin: 1.125em 0px 0.75em;"><a name="service_event" href="#service_event" style="text-decoration: none; vertical-align: baseline;color: rgb(50, 105, 160);"></a>service_event</h3><table style="padding: 0px; border-collapse: collapse; border-spacing: 0px;background-color: rgb(250, 250, 250);">
+<thead>
+<tr>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">key</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">type</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">xtra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">PK</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">servie_id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">FK</td>
+</tr>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">event_id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">FK</td>
+</tr>
+</tbody>
+</table><h3 id="event" style="clear: both;font-size: 1.6em; font-weight: bold; margin: 1.125em 0px 0.75em;"><a name="event" href="#event" style="text-decoration: none; vertical-align: baseline;color: rgb(50, 105, 160);"></a>event</h3><table style="padding: 0px; border-collapse: collapse; border-spacing: 0px;background-color: rgb(250, 250, 250);">
+<thead>
+<tr>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">key</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">type</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">xtra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">PK</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">begin</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">timestamp</td>
+</tr>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">end</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">timestamp</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">name</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">varchar(40)</td>
+</tr>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">comment</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">text</td>
+</tr>
+</tbody>
+</table><h3 id="event_departments" style="clear: both;font-size: 1.6em; font-weight: bold; margin: 1.125em 0px 0.75em;"><a name="event_departments" href="#event_departments" style="text-decoration: none; vertical-align: baseline;color: rgb(50, 105, 160);"></a>event_departments</h3><table style="padding: 0px; border-collapse: collapse; border-spacing: 0px;background-color: rgb(250, 250, 250);">
+<thead>
+<tr>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">key</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">type</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">xtra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">PK</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">department_id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">FK (departments)</td>
+</tr>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">event_id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">FK (event)</td>
+</tr>
+</tbody>
+</table><h3 id="departments" style="clear: both;font-size: 1.6em; font-weight: bold; margin: 1.125em 0px 0.75em;"><a name="departments" href="#departments" style="text-decoration: none; vertical-align: baseline;color: rgb(50, 105, 160);"></a>departments</h3><table style="padding: 0px; border-collapse: collapse; border-spacing: 0px;background-color: rgb(250, 250, 250);">
+<thead>
+<tr>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">key</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">type</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">xtra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">PK</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">name</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">varchar(40)</td>
+</tr>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">min_count</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+</tr>
+</tbody>
+</table><h3 id="user" style="clear: both;font-size: 1.6em; font-weight: bold; margin: 1.125em 0px 0.75em;"><a name="user" href="#user" style="text-decoration: none; vertical-align: baseline;color: rgb(50, 105, 160);"></a>user</h3><table style="padding: 0px; border-collapse: collapse; border-spacing: 0px;background-color: rgb(250, 250, 250);">
+<thead>
+<tr>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">key</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">type</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">xtra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">PK</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">department_id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">FK</td>
+</tr>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">lastname</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">varchar(55)</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">firstname</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">varchar(55)</td>
+</tr>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">username</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">varchar(90)</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">password</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">varchar(64)</td>
+</tr>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">salt</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">varchar(16)</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">telephone</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">varchar(20)</td>
+</tr>
+</tbody>
+</table><h3 id="user_service" style="clear: both;font-size: 1.6em; font-weight: bold; margin: 1.125em 0px 0.75em;"><a name="user_service" href="#user_service" style="text-decoration: none; vertical-align: baseline;color: rgb(50, 105, 160);"></a>user_service</h3><table style="padding: 0px; border-collapse: collapse; border-spacing: 0px;background-color: rgb(250, 250, 250);">
+<thead>
+<tr>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">key</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">type</th>
+<th style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">xtra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">PK</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">user_id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">FK</td>
+</tr>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">service_id</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">int(11)</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">FK</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">comment</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">text</td>
+</tr>
+<tr>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">begin</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">timestamp</td>
+</tr>
+<tr style="background-color: rgb(242, 242, 242);">
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">end</td>
+<td style="border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">timestamp</td>
+</tr>
+</tbody>
+</table><h2 id="userinterface" style="clear: both;font-size: 1.8em; font-weight: bold; margin: 1.275em 0px 0.85em;border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(230, 230, 230); line-height: 1.7em;"><a name="userinterface" href="#userinterface" style="text-decoration: none; vertical-align: baseline;color: rgb(50, 105, 160);"></a>UserInterface</h2></div>
