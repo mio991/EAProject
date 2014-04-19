@@ -12,7 +12,7 @@ class bb_events extends bb_base{
         // check if user is customer is owner of the selected book
 
         $db = MySql :: getInstance();
-        $sql_select_query = 'SELECT * FROM `events` WHERE `user_id`=%1$u ORDER by begin ASC;';
+        $sql_select_query = 'SELECT `user_service`.`id`, `user_service`.`user_id`, `services`.`name` as `title`, `user_service`.`comment`, `user_service`.`begin`, `user_service`.`end` FROM `user_service` LEFT JOIN `services` ON `services`.`id` = `user_service`.`service_id` WHERE `user_id`=%1$u ORDER by begin ASC;';
         $res = $db->queryf($sql_select_query, $_SESSION['auth']['user_id']);
 
         $row = $db->fetchAll($res);
@@ -31,8 +31,23 @@ class bb_events extends bb_base{
         $current_date = date('Y-m-d',time());
         $db = MySql :: getInstance();
 
-        $db->query("INSERT INTO events (id, user_id, begin, end, title, comment) ".
-                      "VALUES (null, ".$_SESSION['auth']['user_id'].", '".$params->begin."','".$params->end."','".$params->title."','".$params->comment."')");
+        $db->query("INSERT INTO `eaproject`.`services` (`id`, `name`, `location`, `standby`, `erreichbar`) " .
+                "VALUES (NULL, '" . $params->title . "', '', b'0', b'0');");
+
+        // $db->query("INSERT INTO events (id, user_id, begin, end, title, comment) ".
+        //               "VALUES (null, ".$_SESSION['auth']['user_id'].", '".$params->begin."','".$params->end."','".$params->title."','".$params->comment."')");
+
+        if ($db->getLastId() == null) {
+            throw new Exception('error while db insert');
+        }
+
+        $id = intval($db->getLastId());
+
+        $db->query("INSERT INTO `eaproject`.`user_service` (`id`, `user_id`, `service_id`, `comment`, `begin`, `end`) " .
+            " VALUES (NULL, ".$_SESSION['auth']['user_id'].", $id , '".$params->comment."', '".$params->begin."','".$params->end."');");
+
+        // $db->query("INSERT INTO events (id, user_id, begin, end, title, comment) ".
+        //               "VALUES (null, ".$_SESSION['auth']['user_id'].", '".$params->begin."','".$params->end."','".$params->title."','".$params->comment."')");
 
         if ($db->getLastId() == null) {
             throw new Exception('error while db insert');
@@ -53,8 +68,6 @@ class bb_events extends bb_base{
         $db = MySQL::getInstance();
         $sql_update_str = array();
 
-        if ($params->title)
-                $sql_update_str[] = sprintf("`title` = '%s'", $db->escape($params->title));
         if ($params->comment)
                 $sql_update_str[] = sprintf("`comment` = '%s'", $db->escape($params->comment));
         if ($params->begin)
@@ -62,20 +75,59 @@ class bb_events extends bb_base{
         if ($params->end)
                 $sql_update_str[] = sprintf("`end` = '%s'", $db->escape($params->end));
 
-        // nothing to change
-        if (empty($sql_update_str)) {
-            return true;
+        // // nothing to change
+        // if (empty($sql_update_str)) {
+        //     return true;
+        // }
+        //
+
+        if (count($sql_update_str) != 0) {
+            $sql_update_str = 'UPDATE `events` SET ' . implode(', ', $sql_update_str) . ' WHERE `id` = %1$u;';
+            $db->queryf($sql_update_str, intval($params->id));
+
+            // evaluate results
+            $affected_rows = $db->getAffected();
+
+            // if ($affected_rows == -1) {
+            //     $err = 'Could not update media: ' . $params->id;
+            //     throw new Exception($err);
+            // }
         }
 
-        $sql_update_str = 'UPDATE `events` SET ' . implode(', ', $sql_update_str) . ' WHERE `id` = %1$u;';
-        $db->queryf($sql_update_str, $params->id);
 
-        // evaluate results
-        $affected_rows = $db->getAffected();
-        if ($affected_rows == -1) {
-            $err = 'Could not update media: ' . $params->id;
-            throw new Exception($err);
+
+
+        $sql_update_str = array();
+
+        if ($params->title)
+        {
+             //$sql_update_str = printf('SELECT `service_id` FROM `user_service` WHERE `id` = %1$u;', $params->id);
+
+            $db = MySQL::getInstance();
+            $res = $db->queryf('SELECT `service_id` FROM `user_service` WHERE `id` = %1$u;', $params->id);
+
+            $row = $db->fetch($res);
+
+            $db->free($res);
+
+            // nothing to change
+            // if (empty($sql_update_str)) {
+            //     return true;
+            // }
+
+            $sql_update_str = 'UPDATE `services` SET `name` = "%1$s" WHERE `id` = %2$u;';
+
+            $db->queryf($sql_update_str,$db->escape($params->title), intval($row['service_id']));
+
+            // evaluate results
+            $affected_rows = $db->getAffected();
+            if ($affected_rows == -1) {
+                $err = 'Could not update media: ' . $params->id;
+                throw new Exception($err);
+            }
         }
+
+
 
         return array(
             'id' => $params->id
@@ -92,7 +144,7 @@ class bb_events extends bb_base{
         $db = MySQL::getInstance();
 
         $sql_delete = 'DELETE FROM %1$s WHERE `id` = %2$u LIMIT %3$u;';
-        $db->queryf($sql_delete, 'events', $id, 1);
+        $db->queryf($sql_delete, 'user_service', $id, 1);
 
         $affected = $db->getAffected();
 
